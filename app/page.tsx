@@ -1,101 +1,70 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { AvatarColor, Player } from "@/app/lib/definitions";
+import Logo from "@/app/ui/logo";
+import NonParticipantList from "@/app/ui/non-participant-list";
+import ParticipantList from "@/app/ui/participant-list";
+import { Button } from "@radix-ui/themes";
+import React from "react";
+
+
+export default function Page() {
+  // テスト用
+  const c = AvatarColor;
+  const [players, setPlayers] = React.useState<Player[]>([
+    {
+      id: '410544b2-4001-4271-9855-fec4b6a6442a',
+      name: 'Tanaka',
+      isPlayer: true,
+      avatarInitial: 'T',
+      avatarColor: c.Blue
+    },
+    {
+      id: 'f8fd44f3-dd7e-4c6f-bfc8-d88a7437a64d',
+      name: 'Suzuki',
+      isPlayer: true,
+      avatarInitial: 'S',
+      avatarColor: c.Green
+    },
+    {
+      id: '795efddd-0828-47de-9740-ed0e22aae298',
+      name: 'Takahashi',
+      isPlayer: false,
+      avatarInitial: 'T',
+      avatarColor: c.Indigo
+    },
+    {
+      id: '180c306d-c181-4d37-a61d-4929811358c8',
+      name: 'Sato',
+      isPlayer: false,
+      avatarInitial: 'S',
+      avatarColor: c.Pink
+    },
+    {
+      id: 'b7f3b6d9-5a0f-4c1e-8c8d-9f56edff6dbb',
+      name: 'Watanabe',
+      isPlayer: true,
+      avatarInitial: 'W',
+      avatarColor: c.Violet
+    },
+  ]);
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+    <main className="flex min-h-screen flex-col p-6">
+      <div className="flex mb-8">
+        <Logo />
+      </div>
+      <div className="mb-8">
+        <ParticipantList players={players} setPlayers={setPlayers}/>
+      </div>
+      <div className="mb-8">
+        <NonParticipantList players={players} setPlayers={setPlayers}/>
+      </div>
+      <div>
+      <Button size="3">
+        スタート
+       </Button>
+      </div>
+    </main>
   );
 }
