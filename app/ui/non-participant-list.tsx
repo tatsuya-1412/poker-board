@@ -11,7 +11,7 @@ export default function NonParticipantList({players, setPlayers}: PlayerListProp
     <div className="flex flex-col">
       <div className="flex flex-row items-center justify-between mb-4">
         <div className="flex flex-row items-center">
-          <BsPeople className="h-12 w-12 mr-4"/>
+          <BsPeople className="h-10 w-10 mr-4"/>
           <p className="text-[20px] font-semibold">不参加者リスト</p>
         </div>
       </div>
@@ -26,8 +26,8 @@ export default function NonParticipantList({players, setPlayers}: PlayerListProp
               <p>{player.name}</p>
             </div>
             {/* <ToParticipate /> */}
-            <IconButton color="indigo" variant="soft" onClick={() => handleTogglePlayer(player.id, {players, setPlayers})}>
-              <MdAdd width="18" height="18" />
+            <IconButton size="3" color="indigo" variant="ghost" radius="full" onClick={() => handleTogglePlayer(player.id, {players, setPlayers})}>
+              <MdAdd size={20} width="22" height="22" />
             </IconButton>
           </div>
         ))}

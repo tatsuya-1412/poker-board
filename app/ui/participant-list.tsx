@@ -10,7 +10,7 @@ export default function ParticipantList({players, setPlayers}: PlayerListProps) 
     <div className="flex flex-col">
       <div className="flex flex-row items-center justify-between mb-4">
         <div className="flex flex-row items-center">
-          <BsPeopleFill className="h-12 w-12 mr-4"/>
+          <BsPeopleFill className="h-10 w-10 mr-4"/>
           <p className="text-[20px] font-semibold">参加者リスト</p>
         </div>
         <AddPlayerDialog players={players} setPlayers={setPlayers}/>
@@ -25,8 +25,8 @@ export default function ParticipantList({players, setPlayers}: PlayerListProps) 
               <Avatar radius="full" variant="solid" color={player.avatarColor} fallback={player.avatarInitial} className="mr-4"/>
               <p>{player.name}</p>
             </div>
-            <IconButton color="indigo" variant="soft" onClick={() => handleTogglePlayer(player.id, {players, setPlayers})}>
-              <MdRemove width="18" height="18" />
+            <IconButton size="3" color="ruby" variant="ghost" radius="full" onClick={() => handleTogglePlayer(player.id, {players, setPlayers})}>
+              <MdRemove size={20} width="22" height="22" />
             </IconButton>
           </div>
         ))}

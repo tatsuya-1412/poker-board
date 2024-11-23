@@ -10,6 +10,11 @@ export interface PlayerListProps {
     players: Player[];
     setPlayers: React.Dispatch<React.SetStateAction<Player[]>>;
 }
+
+export type PokerTableProps = {
+    players: Player[];
+  };
+  
   
 export enum AvatarColor {
     Gray = "gray",

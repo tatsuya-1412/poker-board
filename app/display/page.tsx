@@ -2,14 +2,13 @@
 
 import { AvatarColor, Player } from "@/app/lib/definitions";
 import Logo from "@/app/ui/logo";
-import NonParticipantList from "@/app/ui/non-participant-list";
-import ParticipantList from "@/app/ui/participant-list";
-import { Button, Link } from "@radix-ui/themes";
+import PokerTable from "@/app/ui/poker-table";
+import { Button } from "@radix-ui/themes";
+import Link from "next/link";
 import React from "react";
-
+import { FaHome } from "react-icons/fa";
 
 export default function Page() {
-  // テスト用
   const c = AvatarColor;
   const [players, setPlayers] = React.useState<Player[]>([
     {
@@ -49,27 +48,28 @@ export default function Page() {
     },
   ]);
 
+
   return (
-    <main className="flex min-h-screen flex-col p-6">
-      <div className="flex mb-8">
+    <main className="flex min-h-screen flex-col p-6 overflow-x-hidden">
+      <header className="flex items-center justify-between mb-8">
         <Logo />
-      </div>
-      <div className="mb-8">
-        <ParticipantList players={players} setPlayers={setPlayers}/>
-      </div>
-      <div className="mb-8">
-        <NonParticipantList players={players} setPlayers={setPlayers}/>
-      </div>
-      <div>
-      <Link
-        key="display"
-        href="/display"
-      >
-        <Button color="gray" variant="solid" highContrast size="3" >
-        <p className="font-semibold">スタート</p>
-        </Button>
-       </Link>
-      </div>
+        <Link href="/">
+          <Button color="gray" variant="soft" highContrast className="flex items-center">
+            <FaHome className="text-lg" />
+            Home
+          </Button>
+        </Link>
+      </header>
+      <section className="text-center mb-8">
+        <h1 className="text-3xl font-bold text-gray-800 border-b-2 border-gray-300 pb-2 inline-block">
+          座席
+        </h1>
+      </section>
+      <section className="flex justify-center items-center">
+        <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-4xl">
+          <PokerTable players={players} />
+        </div>
+      </section>
     </main>
   );
 }

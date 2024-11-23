@@ -27,7 +27,7 @@ export default function AddPlayerDialog({players, setPlayers}: PlayerListProps) 
   return (
     <Dialog.Root>
       <Dialog.Trigger>
-        <Button>
+        <Button color="gray" variant="solid" highContrast>
           <MdPersonAdd />追加
         </Button>
       </Dialog.Trigger>
@@ -42,19 +42,11 @@ export default function AddPlayerDialog({players, setPlayers}: PlayerListProps) 
             </Text>
             <TextField.Root
               value={playerName}
+              color="gray"
               onChange={handleNameChange}
               placeholder="Enter your name"
             />
           </label>
-          {/* <label>
-            <Text as="div" size="2" mb="1" weight="bold">
-              Email
-            </Text>
-            <TextField.Root
-              defaultValue="freja@example.com"
-              placeholder="Enter your email"
-            />
-          </label> */}
         </Flex>
 
         <Flex gap="3" mt="4" justify="end">
@@ -64,7 +56,7 @@ export default function AddPlayerDialog({players, setPlayers}: PlayerListProps) 
             </Button>
           </Dialog.Close>
           <Dialog.Close>
-            <Button onClick={handleSave}>
+            <Button color="gray" variant="solid" highContrast onClick={handleSave}>
               Save
             </Button>
           </Dialog.Close>
