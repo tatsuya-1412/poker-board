@@ -3,10 +3,13 @@ import PokerTable from "@/app/ui/display/poker-table";
 import Logo from "@/app/ui/logo";
 import { Button } from "@radix-ui/themes";
 import Link from "next/link";
+import { NextResponse } from 'next/server';
 import { FaHome } from "react-icons/fa";
 
 export default async function Page() {
   const players = await fetchParticipants();
+  const response = NextResponse.json(players);
+  response.headers.set('Cache-Control', 'no-store');
 
   return (
     <main className="flex min-h-screen flex-col p-6 overflow-x-hidden">
