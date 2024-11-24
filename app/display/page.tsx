@@ -5,12 +5,11 @@ import Logo from "@/app/ui/logo";
 import PokerTable from "@/app/ui/poker-table";
 import { Button } from "@radix-ui/themes";
 import Link from "next/link";
-import React from "react";
 import { FaHome } from "react-icons/fa";
 
 export default function Page() {
   const c = AvatarColor;
-  const [players, setPlayers] = React.useState<Player[]>([
+  const players: Player[] = [
     {
       id: '410544b2-4001-4271-9855-fec4b6a6442a',
       name: 'Tanaka',
@@ -46,7 +45,7 @@ export default function Page() {
       avatarInitial: 'W',
       avatarColor: c.Violet
     },
-  ]);
+  ];
 
 
   return (

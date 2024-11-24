@@ -13,7 +13,7 @@ export default function ParticipantList({players, setPlayers}: PlayerListProps) 
           <BsPeopleFill className="h-10 w-10 mr-4"/>
           <p className="text-[20px] font-semibold">参加者リスト</p>
         </div>
-        <AddPlayerDialog players={players} setPlayers={setPlayers}/>
+        <AddPlayerDialog setPlayers={setPlayers}/>
       </div>
       <div>
         {players.filter(player => player.isPlayer).map((player) => (
@@ -25,7 +25,7 @@ export default function ParticipantList({players, setPlayers}: PlayerListProps) 
               <Avatar radius="full" variant="solid" color={player.avatarColor} fallback={player.avatarInitial} className="mr-4"/>
               <p>{player.name}</p>
             </div>
-            <IconButton size="3" color="ruby" variant="ghost" radius="full" onClick={() => handleTogglePlayer(player.id, {players, setPlayers})}>
+            <IconButton size="3" color="ruby" variant="ghost" radius="full" onClick={() => handleTogglePlayer(player.id, {setPlayers})}>
               <MdRemove size={20} width="22" height="22" />
             </IconButton>
           </div>

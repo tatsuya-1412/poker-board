@@ -16,7 +16,7 @@ export default function NonParticipantList({players, setPlayers}: PlayerListProp
         </div>
       </div>
       <div>
-        {players.filter(player => !player.isPlayer).map((player, i) => (
+        {players.filter(player => !player.isPlayer).map((player) => (
           <div 
           key={player.id}
           className="flex items-center justify-between p-3 border border-gray-300 rounded-md mb-2"
@@ -26,7 +26,7 @@ export default function NonParticipantList({players, setPlayers}: PlayerListProp
               <p>{player.name}</p>
             </div>
             {/* <ToParticipate /> */}
-            <IconButton size="3" color="indigo" variant="ghost" radius="full" onClick={() => handleTogglePlayer(player.id, {players, setPlayers})}>
+            <IconButton size="3" color="indigo" variant="ghost" radius="full" onClick={() => handleTogglePlayer(player.id, {setPlayers})}>
               <MdAdd size={20} width="22" height="22" />
             </IconButton>
           </div>

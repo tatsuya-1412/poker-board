@@ -1,7 +1,7 @@
 import { AvatarColor, Player, PlayerListProps } from "@/app/lib/definitions";
 import { v4 as uuidv4 } from 'uuid';
 
-export const handleTogglePlayer = (id: string, { players, setPlayers }: PlayerListProps) => {
+export const handleTogglePlayer = (id: string, { setPlayers }: Omit<PlayerListProps, 'players'>) => {
     setPlayers((prevPlayers) =>
         prevPlayers.map((player) =>
             player.id === id ? { ...player, isPlayer: !player.isPlayer } : player
@@ -15,7 +15,7 @@ const getRandomColor = (): AvatarColor => {
     return colors[randomIndex] as AvatarColor;
 };
 
-export const handleAddPlayer = (name: string, { players, setPlayers }: PlayerListProps) => {
+export const handleAddPlayer = (name: string, { setPlayers }: Omit<PlayerListProps, 'players'>) => {
     if (name) {
         const newPlayer: Player = {
             id: uuidv4(),

@@ -4,7 +4,7 @@ import { Button, Dialog, Flex, Text, TextField } from "@radix-ui/themes";
 import React from "react";
 import { MdPersonAdd } from "react-icons/md";
 
-export default function AddPlayerDialog({players, setPlayers}: PlayerListProps) {
+export default function AddPlayerDialog({ setPlayers }: Omit<PlayerListProps, 'players'>) {
   const [playerName, setPlayerName] = React.useState("");
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -13,7 +13,7 @@ export default function AddPlayerDialog({players, setPlayers}: PlayerListProps) 
 
   const handleSave = () => {
     if (playerName.trim()) {
-      handleAddPlayer(playerName, {players, setPlayers})
+      handleAddPlayer(playerName, {setPlayers})
       setPlayerName("");
     } else {
       alert("名前を入力してください");
