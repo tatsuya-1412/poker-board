@@ -1,15 +1,19 @@
 "use client";
 
-import { PokerTableProps } from "@/app/lib/definitions";
+import Loading from "@/app/display/loading";
+import { Player, PokerTableProps } from "@/app/lib/definitions";
+import BustOutDialog from "@/app/ui/display/count-dialog";
 import { Avatar } from "@radix-ui/themes";
 import { useEffect, useRef, useState } from "react";
-import Loading from "../display/loading";
+import CountResetButton from "./count-reset-button";
 
 
-export default function PokerTable({ players }: PokerTableProps) {
+export default function PokerTable({ players: initialPlayers }: PokerTableProps) {
+  const [players, setPlayers] = useState<Player[]>(initialPlayers);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState<number>(0);
+  const [activePlayerIndex, setActivePlayerIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const updateContainerWidth = () => {
@@ -52,9 +56,22 @@ export default function PokerTable({ players }: PokerTableProps) {
           transform: "translate(-50%, -50%)",
         }}
       >
-        <div className="relative">
+        <div className="relative" onClick={() => setActivePlayerIndex(i)}>
           <Avatar radius="full" variant="solid" size="4" color={players[i].avatarColor} fallback={players[i].avatarInitial} className=""/>
-    
+          {players[i].bustOutCount > 0 && (
+            <div
+              className="absolute flex items-center justify-center rounded-full text-white font-bold text-xs"
+              style={{
+                top: "-10px",
+                left: "-10px",
+                width: "24px",
+                height: "24px",
+                backgroundColor: "red",
+              }}
+            >
+              {players[i].bustOutCount}
+            </div>
+          )}
           {i === 0 && (
             <div
               className="absolute flex items-center justify-center rounded-full border-2 text-white font-bold text-xs"
@@ -82,24 +99,38 @@ export default function PokerTable({ players }: PokerTableProps) {
   });
 
   return (
-    <div ref={containerRef} className="relative w-full h-[400px] mx-auto">
-      <svg
-        className="absolute left-0 top-0"
-        width={containerWidth}
-        height={400}
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <ellipse
-          cx={centerX}
-          cy={centerY-10}
-          rx={radiusX}
-          ry={radiusY}
-          fill="none"
-          stroke="rgba(0, 0, 0, 0.1)"
-          strokeWidth="2"
+    <>
+      <div ref={containerRef} className="relative w-full h-[450px] mx-auto">
+        <svg
+          className="absolute left-0 top-0"
+          width={containerWidth}
+          height={400}
+          xmlns="http://www.w3.org/2000/svg"
+          >
+          <ellipse
+            cx={centerX}
+            cy={centerY-10}
+            rx={radiusX}
+            ry={radiusY}
+            fill="none"
+            stroke="rgba(0, 0, 0, 0.1)"
+            strokeWidth="2"
+            />
+        </svg>
+        {avatars}
+      </div>
+      {activePlayerIndex !== null && (
+        <BustOutDialog
+          player={players[activePlayerIndex]}
+          initialValue={players[activePlayerIndex].bustOutCount}
+          onClose={() => {
+            setActivePlayerIndex(null);
+          }}
         />
-      </svg>
-      {avatars}
-    </div>
+      )}
+      <div className="flex justify-center items-center">
+        <CountResetButton players={players} setPlayers={setPlayers}/>
+      </div>
+    </>
   );
 }

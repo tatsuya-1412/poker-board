@@ -1,8 +1,8 @@
+import { updatePlayers } from "@/app/lib/actions";
+import { Player } from "@/app/lib/definitions";
 import { Button } from "@radix-ui/themes";
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from "react";
-import { updatePlayers } from "../lib/actions";
-import { Player } from "../lib/definitions";
 
 interface StartButtonProps {
   players: Player[];

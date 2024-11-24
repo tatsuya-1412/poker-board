@@ -1,6 +1,6 @@
 import { PlayerListProps } from "@/app/lib/definitions";
 import { handleTogglePlayer } from "@/app/lib/handle";
-import AddPlayerDialog from "@/app/ui/addPlayerDialog";
+import AddPlayerDialog from "@/app/ui/add-player-dialog";
 import { Avatar, IconButton } from "@radix-ui/themes";
 import { useState } from "react";
 import { BsPeopleFill } from "react-icons/bs";

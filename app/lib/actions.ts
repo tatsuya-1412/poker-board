@@ -36,3 +36,20 @@ export async function updatePlayers(players: Player[]) {
         throw new Error("Failed to update player information.");
     }
 }
+
+export async function updatePlayer(player: Player) {
+    try {
+        await sql`
+            UPDATE players
+            SET 
+            is_player = ${player.isPlayer},
+            avatar_initial = ${player.avatarInitial},
+            avatar_color = ${player.avatarColor},
+            bust_out_count = ${player.bustOutCount}
+            WHERE id = ${player.id};
+        `;
+    } catch (error) {
+        console.error("Error updating player:", error);
+        throw new Error("Failed to update player information.");
+    }
+}

@@ -1,6 +1,6 @@
 import { fetchParticipants } from "@/app/lib/data";
+import PokerTable from "@/app/ui/display/poker-table";
 import Logo from "@/app/ui/logo";
-import PokerTable from "@/app/ui/poker-table";
 import { Button } from "@radix-ui/themes";
 import Link from "next/link";
 import { FaHome } from "react-icons/fa";
@@ -14,7 +14,7 @@ export default async function Page() {
         <Logo />
         <Link href="/">
           <Button color="gray" variant="soft" highContrast className="flex items-center">
-            <FaHome className="text-lg" />
+            <FaHome className="text-lg"/>
             <span className="hidden sm:inline-block">Home</span>
           </Button>
         </Link>
@@ -24,9 +24,9 @@ export default async function Page() {
           座席
         </h1>
       </section>
-      <section className="flex justify-center items-center">
+      <section className="flex justify-center items-center mb-8">
         <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-4xl">
-          <PokerTable players={players} />
+          <PokerTable players={players}/>
         </div>
       </section>
     </main>

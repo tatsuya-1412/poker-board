@@ -1,10 +1,10 @@
 "use client";
 
+import { Player } from "@/app/lib/definitions";
+import NonParticipantList from "@/app/ui/non-participant-list";
 import ParticipantList from "@/app/ui/participant-list";
+import StartButton from "@/app/ui/start-button";
 import { useState } from "react";
-import { Player } from "../lib/definitions";
-import NonParticipantList from "./non-participant-list";
-import StartButton from "./start-button";
 
 interface InitialPlayerListProps {
   initialPlayers: Player[];
