@@ -7,6 +7,7 @@ import Loading from "../display/loading";
 
 
 export default function PokerTable({ players }: PokerTableProps) {
+
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState<number>(0);
 

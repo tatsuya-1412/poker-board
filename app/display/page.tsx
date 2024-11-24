@@ -6,7 +6,6 @@ import Link from "next/link";
 import { FaHome } from "react-icons/fa";
 
 export default async function Page() {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
   const players = await fetchParticipants();
 
   return (
