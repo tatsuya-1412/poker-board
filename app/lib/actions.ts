@@ -1,30 +1,38 @@
-import { AvatarColor, Player, PlayerListProps } from "@/app/lib/definitions";
-import { v4 as uuidv4 } from 'uuid';
+'use server';
 
-export const handleTogglePlayer = (id: string, { setPlayers }: Omit<PlayerListProps, 'players'>) => {
-    setPlayers((prevPlayers) =>
-        prevPlayers.map((player) =>
-            player.id === id ? { ...player, isPlayer: !player.isPlayer } : player
-        )
-    );
-};
+import { Player } from "@/app/lib/definitions";
+import { sql } from "@vercel/postgres";
 
-const getRandomColor = (): AvatarColor => {
-    const colors = Object.values(AvatarColor);
-    const randomIndex = Math.floor(Math.random() * colors.length);
-    return colors[randomIndex] as AvatarColor;
-};
-
-export const handleAddPlayer = (name: string, { setPlayers }: Omit<PlayerListProps, 'players'>) => {
-    if (name) {
-        const newPlayer: Player = {
-            id: uuidv4(),
-            name: name,
-            isPlayer: true,
-            avatarInitial: name.charAt(0),
-            avatarColor: getRandomColor(),
-            bustOutCount: 0
-        };
-        setPlayers((prevPlayers) => [...prevPlayers, newPlayer]);
+export async function createPlayer(player: Player) {
+    try {
+        await sql`
+            INSERT INTO players (id, name, is_player, avatar_initial, avatar_color, bust_out_count)
+            VALUES (${player.id}, ${player.name}, ${player.isPlayer}, ${player.avatarInitial}, ${player.avatarColor}, ${player.bustOutCount})
+            ON CONFLICT (id) DO NOTHING;
+        `;
+    } catch (error) {
+        console.error("Error updating players:", error);
+        throw new Error("Failed to update player information.");
     }
-};
+}
+
+export async function updatePlayers(players: Player[]) {
+    try {
+        for (const player of players) {
+            const { id, isPlayer, avatarInitial, avatarColor, bustOutCount } = player;
+    
+            await sql`
+                UPDATE players
+                SET 
+                is_player = ${isPlayer},
+                avatar_initial = ${avatarInitial},
+                avatar_color = ${avatarColor},
+                bust_out_count = ${bustOutCount}
+                WHERE id = ${id};
+            `;
+        }
+    } catch (error) {
+        console.error("Error updating players:", error);
+        throw new Error("Failed to update player information.");
+    }
+}

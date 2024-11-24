@@ -1,8 +1,9 @@
-import { handleAddPlayer } from "@/app/lib/actions";
-import { PlayerListProps } from "@/app/lib/definitions";
+import { createPlayer } from "@/app/lib/actions";
+import { AvatarColor, Player, PlayerListProps } from "@/app/lib/definitions";
 import { Button, Dialog, Flex, Text, TextField } from "@radix-ui/themes";
 import React from "react";
 import { MdPersonAdd } from "react-icons/md";
+import { v4 as uuidv4 } from 'uuid';
 
 export default function AddPlayerDialog({ setPlayers }: Omit<PlayerListProps, 'players'>) {
   const [playerName, setPlayerName] = React.useState("");
@@ -11,10 +12,30 @@ export default function AddPlayerDialog({ setPlayers }: Omit<PlayerListProps, 'p
     setPlayerName(event.target.value);
   };
 
-  const handleSave = () => {
+  const getRandomColor = (): AvatarColor => {
+    const colors = Object.values(AvatarColor);
+    const randomIndex = Math.floor(Math.random() * colors.length);
+    return colors[randomIndex] as AvatarColor;
+  };
+
+  const handleSave = async () => {
     if (playerName.trim()) {
-      handleAddPlayer(playerName, {setPlayers})
+        const newPlayer: Player = {
+          id: uuidv4(),
+          name: playerName,
+          isPlayer: true,
+          avatarInitial: playerName.charAt(0),
+          avatarColor: getRandomColor(),
+          bustOutCount: 0
+      };
+      setPlayers((prevPlayers) => [...prevPlayers, newPlayer]);
       setPlayerName("");
+      try {
+        await createPlayer(newPlayer);
+        console.log("Players updated successfully.");
+      } catch (error) {
+        console.error("Error updating players:", error);
+      }
     } else {
       alert("名前を入力してください");
     }
@@ -63,5 +84,5 @@ export default function AddPlayerDialog({ setPlayers }: Omit<PlayerListProps, 'p
         </Flex>
       </Dialog.Content>
     </Dialog.Root>
-  )
+  );
 }

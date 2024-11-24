@@ -1,24 +1,24 @@
+"use client";
+
 import { PokerTableProps } from "@/app/lib/definitions";
+import { Avatar } from "@radix-ui/themes";
 import { useEffect, useRef, useState } from "react";
 import Loading from "../display/loading";
 
 
 export default function PokerTable({ players }: PokerTableProps) {
-  const containerRef = useRef<HTMLDivElement>(null); // 親要素の参照を取得
+  const containerRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState<number>(0);
 
   useEffect(() => {
-    // 親要素の幅を取得
     const updateContainerWidth = () => {
       if (containerRef.current) {
         setContainerWidth(containerRef.current.offsetWidth);
       }
     };
 
-    // 初期取得
     updateContainerWidth();
 
-    // リサイズ時に幅を更新
     window.addEventListener("resize", updateContainerWidth);
     return () => window.removeEventListener("resize", updateContainerWidth);
   }, []);
@@ -29,15 +29,15 @@ export default function PokerTable({ players }: PokerTableProps) {
     </div>;
   }
 
-  const centerX = containerWidth / 2; // 親要素の中心
-  const centerY = 200;  // 楕円の中心Y座標
-  const radiusX = 0.4 * containerWidth;  // X軸方向の半径
-  const radiusY = 180;  // Y軸方向の半径
+  const centerX = containerWidth / 2;
+  const centerY = 200;
+  const radiusX = 0.4 * containerWidth;
+  const radiusY = 180;
 
-  const numSeats = players.length  // プレイヤー数
+  const numSeats = players.length
 
   const avatars = Array.from({ length: numSeats }, (_, i) => {
-    const angle = (2 * Math.PI * i) / numSeats - Math.PI / 2;  // 各アバターの角度を計算
+    const angle = (2 * Math.PI * i) / numSeats - Math.PI / 2;
     const x = centerX + radiusX * Math.cos(angle);
     const y = centerY + radiusY * Math.sin(angle);
 
@@ -52,29 +52,16 @@ export default function PokerTable({ players }: PokerTableProps) {
         }}
       >
         <div className="relative">
-          {/* アバター */}
-          <div
-            className="flex items-center justify-center rounded-full"
-            style={{
-              width: "56px",
-              height: "56px",
-              backgroundColor: players[i].avatarColor,
-            }}
-          >
-            <span className="text-white text-lg font-bold">
-              {players[i].avatarInitial}
-            </span>
-          </div>
+          <Avatar radius="full" variant="solid" size="4" color={players[i].avatarColor} fallback={players[i].avatarInitial} className=""/>
     
-          {/* BTNマーク */}
           {i === 0 && (
             <div
               className="absolute flex items-center justify-center rounded-full border-2 text-white font-bold text-xs"
               style={{
                 top: "-10px",
                 right: "-10px",
-                width: "32px",
-                height: "32px",
+                width: "28px",
+                height: "28px",
                 backgroundColor: "black",
                 borderColor: "green",
               }}
@@ -84,9 +71,8 @@ export default function PokerTable({ players }: PokerTableProps) {
           )}
         </div>
     
-        {/* プレイヤー名 */}
         <div
-          className="mt-1 px-3 py-1 rounded-full bg-black text-white text-center text-sm"
+          className="mt-1 px-3 py-1 rounded-full bg-black text-white text-center text-sm font-semibold"
         >
           {players[i].name}
         </div>

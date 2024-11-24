@@ -14,9 +14,8 @@ export interface PlayerListProps {
 
 export type PokerTableProps = {
     players: Player[];
-  };
-  
-  
+};
+
 export enum AvatarColor {
     Gray = "gray",
     Gold = "gold",
