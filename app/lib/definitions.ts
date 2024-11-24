@@ -4,6 +4,7 @@ export type Player = {
     isPlayer: boolean;
     avatarInitial: string;
     avatarColor: AvatarColor;
+    bustOutCount: number;
 }
 
 export interface PlayerListProps {

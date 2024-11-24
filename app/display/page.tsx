@@ -15,35 +15,40 @@ export default function Page() {
       name: 'Tanaka',
       isPlayer: true,
       avatarInitial: 'T',
-      avatarColor: c.Blue
+      avatarColor: c.Blue,
+      bustOutCount: 0,
     },
     {
       id: 'f8fd44f3-dd7e-4c6f-bfc8-d88a7437a64d',
       name: 'Suzuki',
       isPlayer: true,
       avatarInitial: 'S',
-      avatarColor: c.Green
+      avatarColor: c.Green,
+      bustOutCount: 0,
     },
     {
       id: '795efddd-0828-47de-9740-ed0e22aae298',
       name: 'Takahashi',
       isPlayer: false,
       avatarInitial: 'T',
-      avatarColor: c.Indigo
+      avatarColor: c.Indigo,
+      bustOutCount: 0,
     },
     {
       id: '180c306d-c181-4d37-a61d-4929811358c8',
       name: 'Sato',
       isPlayer: false,
       avatarInitial: 'S',
-      avatarColor: c.Pink
+      avatarColor: c.Pink,
+      bustOutCount: 0,
     },
     {
       id: 'b7f3b6d9-5a0f-4c1e-8c8d-9f56edff6dbb',
       name: 'Watanabe',
       isPlayer: true,
       avatarInitial: 'W',
-      avatarColor: c.Violet
+      avatarColor: c.Violet,
+      bustOutCount: 0,
     },
   ];
 

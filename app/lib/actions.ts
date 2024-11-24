@@ -23,6 +23,7 @@ export const handleAddPlayer = (name: string, { setPlayers }: Omit<PlayerListPro
             isPlayer: true,
             avatarInitial: name.charAt(0),
             avatarColor: getRandomColor(),
+            bustOutCount: 0
         };
         setPlayers((prevPlayers) => [...prevPlayers, newPlayer]);
     }
