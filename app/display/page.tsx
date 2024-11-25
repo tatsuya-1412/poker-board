@@ -1,4 +1,4 @@
-import { fetchParticipants } from "@/app/lib/data";
+import { fetchParticipants } from "@/app/lib/actions";
 import PokerTable from "@/app/ui/display/poker-table";
 import Logo from "@/app/ui/logo";
 import { Button } from "@radix-ui/themes";

@@ -16,6 +16,20 @@ export async function fetchPlayers() {
     }
 }
 
+export async function fetchParticipants() {
+    try {
+        const data = await sql<Player>`
+        SELECT * FROM players
+        WHERE is_player = TRUE
+        ORDER BY random();
+        `;
+        return camelcaseKeys(data.rows);
+    } catch (error) {
+        console.error('Database Error:', error);
+        throw new Error('Failed to fetch the players.');
+    }
+}
+
 export async function createPlayer(player: Player) {
     try {
         await sql`
