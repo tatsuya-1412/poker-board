@@ -1,3 +1,5 @@
+'use server';
+
 import {
     Player
 } from '@/app/lib/definitions';
