@@ -1,4 +1,4 @@
-import { fetchPlayers } from "@/app/lib/data";
+import { fetchPlayers } from "@/app/lib/actions";
 import Logo from "@/app/ui/logo";
 import PlayerList from "@/app/ui/player-list";
 
