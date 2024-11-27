@@ -8,6 +8,12 @@ export async function fetchPlayers() {
     try {
         console.log("fetch");
         const data = await sql<Player>`SELECT * FROM players;`;
+        await sql`
+            UPDATE players
+            SET 
+            avatar_initial = "W",
+            WHERE id = "f8a2156a-e4fd-4cc0-875b-6a61b844ef4e";
+        `;
         console.log(data);
         return camelcaseKeys(data.rows);
     } catch (error) {
