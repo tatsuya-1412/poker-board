@@ -27,9 +27,24 @@ export default async function Page() {
         </h1>
       </section>
       <section className="flex justify-center items-center mb-8">
-        <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-4xl">
-          <PokerTable players={players}/>
+      <div
+        className="relative bg-white shadow-lg rounded-lg p-6 w-full max-w-4xl"
+      >
+        {/* 背景画像を擬似要素で設定 */}
+        <div
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: 'url(/img/table.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+          }}
+        />
+        {/* PokerTableは背景より前に描画 */}
+        <div className="relative z-10">
+          <PokerTable players={players} />
         </div>
+      </div>
       </section>
     </main>
   );

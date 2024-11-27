@@ -36,7 +36,7 @@ export default function CountResetButton({ players, setPlayers }: CountResetButt
           スタート
         </Button>
       ) : (
-        <Button color="gray" variant="soft" highContrast className="items-center" onClick={handleReset}>
+        <Button color="gray" variant="solid" highContrast className="items-center" onClick={handleReset}>
           <GrPowerReset className="text-lg"/>
           <span className="hidden sm:inline-block">飛び回数</span>
         </Button>

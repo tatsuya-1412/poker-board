@@ -35,7 +35,7 @@ export default function PokerTable({ players: initialPlayers }: PokerTableProps)
   }
 
   const centerX = containerWidth / 2;
-  const centerY = 200;
+  const centerY = 220;
   const radiusX = 0.4 * containerWidth;
   const radiusY = 180;
 
@@ -100,7 +100,10 @@ export default function PokerTable({ players: initialPlayers }: PokerTableProps)
 
   return (
     <>
-      <div ref={containerRef} className="relative w-full h-[450px] mx-auto">
+      <div
+        ref={containerRef}
+        className="relative w-full h-[450px] mx-auto"
+      >
         <svg
           className="absolute left-0 top-0"
           width={containerWidth}
@@ -113,9 +116,9 @@ export default function PokerTable({ players: initialPlayers }: PokerTableProps)
             rx={radiusX}
             ry={radiusY}
             fill="none"
-            stroke="rgba(0, 0, 0, 0.1)"
-            strokeWidth="2"
-            />
+            stroke="rgba(0, 0, 0, 1)"
+            strokeWidth="3"
+          />
         </svg>
         {avatars}
       </div>
