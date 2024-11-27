@@ -2,10 +2,12 @@ import { fetchParticipants } from "@/app/lib/actions";
 import PokerTable from "@/app/ui/display/poker-table";
 import Logo from "@/app/ui/logo";
 import { Button } from "@radix-ui/themes";
+import { unstable_noStore } from 'next/cache';
 import Link from "next/link";
 import { FaHome } from "react-icons/fa";
 
 export default async function Page() {
+  unstable_noStore();
   const players = await fetchParticipants();
 
   return (

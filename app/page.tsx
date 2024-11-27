@@ -4,10 +4,8 @@ import PlayerList from "@/app/ui/player-list";
 import { unstable_noStore } from 'next/cache';
 
 export default async function Page() {
-  console.log("start!")
   unstable_noStore();
   const players = await fetchPlayers();
-  console.log(players)
 
   return (
     <main className="flex min-h-screen flex-col p-6">

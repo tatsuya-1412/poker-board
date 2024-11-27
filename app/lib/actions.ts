@@ -4,21 +4,9 @@ import { Player } from "@/app/lib/definitions";
 import { sql } from "@vercel/postgres";
 import camelcaseKeys from "camelcase-keys";
 
-
 export async function fetchPlayers() {
     try {
-        console.log("fetch");
-        
         const data = await sql<Player>`SELECT * FROM players;`;
-        const id = "f8a2156a-e4fd-4cc0-875b-6a61b844ef4e";
-        const initial = "W";
-        await sql`
-            UPDATE players
-            SET 
-            avatar_initial = ${initial}
-            WHERE id = ${id};
-        `;
-        console.log(data);
         return camelcaseKeys(data.rows);
     } catch (error) {
         console.error('Database Error:', error);
@@ -55,7 +43,6 @@ export async function createPlayer(player: Player) {
 
 export async function updatePlayers(players: Player[]) {
     try {
-        console.log("update");
         for (const player of players) {
             const { id, isPlayer, avatarInitial, avatarColor, bustOutCount } = player;
     
@@ -69,7 +56,6 @@ export async function updatePlayers(players: Player[]) {
                 WHERE id = ${id};
             `;
         }
-        console.log("update fin");
     } catch (error) {
         console.error("Error updating players:", error);
         throw new Error("Failed to update player information.");
