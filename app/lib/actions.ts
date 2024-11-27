@@ -4,9 +4,11 @@ import { Player } from "@/app/lib/definitions";
 import { sql } from "@vercel/postgres";
 import camelcaseKeys from "camelcase-keys";
 
+
 export async function fetchPlayers() {
     try {
         console.log("fetch");
+        
         const data = await sql<Player>`SELECT * FROM players;`;
         const id = "f8a2156a-e4fd-4cc0-875b-6a61b844ef4e";
         const initial = "W";
