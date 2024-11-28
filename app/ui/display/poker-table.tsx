@@ -115,9 +115,18 @@ export default function PokerTable({ players: initialPlayers }: PokerTableProps)
             cy={centerY-10}
             rx={radiusX}
             ry={radiusY}
-            fill="none"
+            fill="rgba(0, 128, 0, 0.8)"
             stroke="rgba(0, 0, 0, 1)"
-            strokeWidth="3"
+            strokeWidth="4"
+          />
+          <ellipse
+            cx={centerX}
+            cy={centerY - 10}
+            rx={radiusX - 20}
+            ry={radiusY - 20}
+            fill="none"
+            stroke="rgba(256, 256, 256, 0.5)"
+            strokeWidth="1"
           />
         </svg>
         {avatars}

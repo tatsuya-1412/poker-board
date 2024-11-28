@@ -15,7 +15,7 @@ export default async function Page() {
       <header className="flex items-center justify-between mb-8">
         <Logo />
         <Link href="/">
-          <Button color="gray" variant="soft" highContrast className="flex items-center">
+          <Button color="gray" variant="solid" highContrast className="flex items-center">
             <FaHome className="text-lg"/>
             <span className="hidden sm:inline-block">Home</span>
           </Button>
@@ -28,19 +28,17 @@ export default async function Page() {
       </section>
       <section className="flex justify-center items-center mb-8">
       <div
-        className="relative bg-white shadow-lg rounded-lg p-6 w-full max-w-4xl"
+        className="relative bg-white shadow-[0_4px_20px_rgba(0,0,0,0.2)] rounded-lg p-6 w-full max-w-4xl"
       >
-        {/* 背景画像を擬似要素で設定 */}
         <div
           className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: 'url(/img/table.png)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-          }}
+          // style={{
+          //   backgroundImage: 'url(/img/table.png)',
+          //   backgroundSize: 'cover',
+          //   backgroundPosition: 'center',
+          //   backgroundRepeat: 'no-repeat',
+          // }}
         />
-        {/* PokerTableは背景より前に描画 */}
         <div className="relative z-10">
           <PokerTable players={players} />
         </div>
